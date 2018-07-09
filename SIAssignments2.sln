@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookupCollections", "Lookup
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericCollections", "GenericCollections\GenericCollections.csproj", "{7ABD02A0-7987-44D8-A6CB-55E65FF9487F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeekAndArchive", "SeekAndArchive\SeekAndArchive.csproj", "{2142DF2B-F657-48D5-BA72-8491854E7881}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7ABD02A0-7987-44D8-A6CB-55E65FF9487F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ABD02A0-7987-44D8-A6CB-55E65FF9487F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ABD02A0-7987-44D8-A6CB-55E65FF9487F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2142DF2B-F657-48D5-BA72-8491854E7881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2142DF2B-F657-48D5-BA72-8491854E7881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2142DF2B-F657-48D5-BA72-8491854E7881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2142DF2B-F657-48D5-BA72-8491854E7881}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
