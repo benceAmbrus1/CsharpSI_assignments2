@@ -75,16 +75,6 @@ namespace SeekAndArchive
             {
                 newWatcher.EnableRaisingEvents = false;
                 Console.WriteLine("File: {0} renamed to {1}", e.OldFullPath, e.FullPath);
-                FileSystemWatcher senderWatcher = (FileSystemWatcher)sender;
-                int index = watchers.IndexOf(senderWatcher, 0);
-                try
-                {
-                    ArchiveFile(archiveDirs[index], FoundFiles[index]);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.StackTrace);
-                }
             }
             finally
             {
