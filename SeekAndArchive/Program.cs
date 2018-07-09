@@ -37,6 +37,9 @@ namespace SeekAndArchive
             {
                 newWatcher = new FileSystemWatcher(fil.DirectoryName, fil.Name);
                 newWatcher.Changed += new FileSystemEventHandler(WatcherChanged);
+                newWatcher.Created += new FileSystemEventHandler(WatcherChanged);
+                newWatcher.Deleted += new FileSystemEventHandler(WatcherChanged);
+                newWatcher.Renamed += new RenamedEventHandler(WatcherNameChange);
                 newWatcher.EnableRaisingEvents = true;
 
                 watchers.Add(newWatcher);
@@ -65,14 +68,13 @@ namespace SeekAndArchive
                 RecursiveSearch(foundFiles, fileName, dir);
             }
         }
-
-        static void WatcherChanged(object sender, FileSystemEventArgs e)
-        {       
+        static void WatcherNameChange(object sender, RenamedEventArgs e)
+        {
             // try catch to show only once changes
             try
             {
                 newWatcher.EnableRaisingEvents = false;
-                Console.WriteLine("{0} has been changed!", e.FullPath);
+                Console.WriteLine("File: {0} renamed to {1}", e.OldFullPath, e.FullPath);
                 FileSystemWatcher senderWatcher = (FileSystemWatcher)sender;
                 int index = watchers.IndexOf(senderWatcher, 0);
                 try
@@ -82,9 +84,31 @@ namespace SeekAndArchive
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.StackTrace);
-                    Console.WriteLine(watchers.Count);
-                    Console.WriteLine(archiveDirs.Count);
-                    Console.WriteLine(FoundFiles.Count);
+                }
+            }
+            finally
+            {
+                newWatcher.EnableRaisingEvents = true;
+            }
+        }
+
+        static void WatcherChanged(object sender, FileSystemEventArgs e)
+        {       
+            // try catch to show only once changes
+            try
+            {
+                newWatcher.EnableRaisingEvents = false;
+                Console.WriteLine("{0} has been changed! Change type {1}", e.FullPath, e.ChangeType);
+                FileSystemWatcher senderWatcher = (FileSystemWatcher)sender;
+                int index = watchers.IndexOf(senderWatcher, 0);
+                try
+                {
+                    ArchiveFile(archiveDirs[index], FoundFiles[index]);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.StackTrace);
+                    
                 }
             }
             finally
